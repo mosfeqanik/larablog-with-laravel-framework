@@ -7,9 +7,9 @@
             <h1><a href="{{route('blog.show',$blog->id)}}">{{$blog->title}}</a></h1>
             {{--{{$blog->body}}--}}
             {!!$blog->body!!}
-            @if($blog->user)
+            @if($blog->blog_user)
                 {{--dd($blog->user)--}}
-                {{--Author: <a href="#">{{$blog->user->name}}</a>--}}
+                Author: <a href="#">{{$blog->blog_user->name}}</a>
                     |posted:{{$blog->created_at->diffForHumans()}}
             @endif
         @endforeach
