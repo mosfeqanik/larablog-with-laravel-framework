@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 use App\Category;
 use App\blog;
+use App\Mail\BlogsPublished;
+use App\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -21,8 +24,8 @@ class BlogController extends Controller
 
     public function index(){
 //        $blogs=blog::all();
-//        $blogs=blog::latest()->get();
-        $blogs=blog::where('status',1)->latest()->get();
+        $blogs=blog::latest()->get();
+//        $blogs=blog::where('status',1)->latest()->get();
         return view('blogs.index',compact('blogs'));
     }
     public function create(){
@@ -60,6 +63,11 @@ class BlogController extends Controller
         if($request->category_id){
 //            $blog->category()->sync($request->category_id);
             $blogByUser->category()->sync($request->category_id);
+        }
+//      mail
+        $users=User::all();
+        foreach($users as $user){
+            Mail::to($user->email)->queue(new BlogsPublished($blogByUser,$user));
         }
         return redirect('blog');
 //        dd($blog->title);

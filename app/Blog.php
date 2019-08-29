@@ -15,8 +15,8 @@ class Blog extends Model
     public function category(){
         return $this->belongsToMany(Category::class);
     }
-    public function user(){
-        return $this->belongsToMany(User::class);
-
-    }
+//    public function user(){
+//        return $this->belongsTo('App\User','user_id');
+//
+//    }
 }

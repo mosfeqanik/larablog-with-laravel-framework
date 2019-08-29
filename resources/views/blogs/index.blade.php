@@ -7,12 +7,12 @@
             <h1><a href="{{route('blog.show',$blog->id)}}">{{$blog->title}}</a></h1>
             {{--{{$blog->body}}--}}
             {!!$blog->body!!}
-            {{$blog->blog_user->name}}
-            @if($blog->blog_user)
-                dd($blog->blog_user->name)
-                Author: <a href="#">{{$blog->blog_user->name}}</a>
-                    |posted:{{$blog->created_at->diffForHumans()}}
-            @endif
+            {{--{{$blog->blog_user->name}}--}}
+
+{{--            @if($blog->user->Users->name)--}}
+{{--                Author: <a href="{{ route('users.show', $blog->id) }}">{{ $blog->user->name }}</a>--}}
+{{--                |posted:{{$blog->created_at->diffForHumans()}}--}}
+{{--            @endif--}}
         @endforeach
     </div>
 @endsection
